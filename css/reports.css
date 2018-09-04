@@ -1,0 +1,52 @@
+#printSaleVoucher {
+  display: none !important;
+  text-align: center;
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 5mm 5mm 5mm 5mm;
+  }
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .page-content,
+  .mdl-layout__header {
+    display: none !important;
+  }
+
+  #printSaleVoucher {
+    display: block !important;
+  }
+  #table {
+  }
+  #table td {
+    line-height: 0.1;
+  }
+}
+
+#printExpenseVoucher {
+  display: none;
+}
+
+#printHeader,
+h2,
+h4,
+h6 {
+  text-align: center;
+  line-height: 0.3;
+}
+
+#printHeader ul {
+  line-height: 0.2;
+}
+
+#printHeader ul li {
+  list-style-type: none;
+  display: inline;
+}
