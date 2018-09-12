@@ -1,4 +1,4 @@
-<!-- <?php 
+<?php 
     session_start();
 
     if(!isset($_SESSION['login_id']))
@@ -9,7 +9,7 @@
 
     }
 
- ?> -->
+ ?> 
 
 
 <!DOCTYPE html>
@@ -23,8 +23,67 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   <link rel="stylesheet" href="css/reports.css">
+  <style type="text/css">
+
+   .autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 15px;
+  margin: 5px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 80%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
+
+
+  </style>
+
+
 </head>
 
 <body style="background: linear-gradient(to right, #9796f0, #fbc7d4);">
@@ -156,25 +215,54 @@
             </center>
           </div>
 
+
+
+
           <div class="mdl-tabs__panel" id="expense">
             <center>
               <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
+
+
+          <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
                   <span class="mdl-chip mdl-chip--contact">
                     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-face"></i></span>
-                    <span class="mdl-chip__text"> <input id="mrName" type="text" placeholder="Search by MR Name">
+                    <span class="mdl-chip__text"> 
+                      <input id="mrName" type="text" placeholder="Search by MR Name">
+                      <div id="suggestion-box"></div>
                     </span>
                   </span>
+                </div> -->
+
+
+
+
+                  <form autocomplete="off" style="margin:0 auto;" id="travelExpense" action="backend/fetch_expense_data_mr.php">
+                <div class="autocomplete" style="width:300px;">
+                  <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 10px;left: -20px;"><i class="zmdi zmdi-face"></i></span>
+                  <input id="myInput" type="text" name="searchMr" placeholder="Search By Name..." required>
+                  <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 62px;left: 0px;"><i class="zmdi zmdi-calendar-alt"></i></span>
+                  <input type="month" id="E-month" placeholder="Month/Year" name="searchtime" required />
+                  <input type="submit">
                 </div>
+              </form>
+
+
+
+
+
+<!-- 
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--1-col-phone">
                   <span class="mdl-chip mdl-chip--contact">
                     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-calendar-alt"></i></span>
                     <span class="mdl-chip__text"> <input type="month" id="E-month" placeholder="Month/Year" />
                     </span>
                   </span>
-                </div>
+                </div> -->
 
               </div>
+
+
+
 
               <div style="position:relative;margin: 0 auto; overflow-x:scroll; overflow-y: hidden;">
 
@@ -193,8 +281,10 @@
                       <th class="mdl-data-table__cell--non-numeric">Remarks</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+
+
+                  <tbody id="travel-details">
+                    <!-- <tr>
                       <td>25/08/2018</td>
                       <td class="mdl-data-table__cell--non-numeric">Kolkata</td>
                       <td class="mdl-data-table__cell--non-numeric">Hawdara</td>
@@ -241,8 +331,14 @@
                       <td><b>200 </b></td>
                       <td><b>728.5 </b></td>
                       <td class="mdl-data-table__cell--non-numeric"></td>
-                    </tr>
+                    </tr> -->
                   </tbody>
+
+
+
+
+
+
                 </table>
                 <br>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="printExpense()"><i
@@ -297,11 +393,15 @@
 
   <script src="js/chart.min.js"></script>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script> -->
 
   <!-- <script src="js/components.js"></script> -->
   <script type="text/javascript">
     $(document).ready(function () {
+
+
+
+
 
       fetch_users();
 
@@ -381,14 +481,39 @@
       //          });
       //setInterval(function(){fetch_stock_report();},1000);
 
-    });
 
 
 
 
+      fetch_travel_report();
+
+
+      function fetch_travel_report()
+       {
+
+         $.ajax({
+
+           url:'backend/fetch_travel.php',
+           method:'POST',
+           success:function(data){
+
+                 $('#travel-details').html(data);
+
+
+                     }
+
+                 })    
+
+       }
+
+ //     setInterval(function(){fetch_travel_report();},1000);
 
 
 
+});
+
+
+ 
     function mySearch() {
 
       var input, filter, table, tr, td, i;
@@ -505,6 +630,181 @@
     }
 
   </script>
+
+<script>
+
+var countries = new Array();
+
+var dataFetch;
+
+$(function() {
+
+    $.ajax({
+        method:     "post",
+        url:      "backend/auto_fetch_mr.php",
+        success:function(data)
+          {
+            countries=data.split(',');
+
+          }
+          ,
+      complete: function() {
+        autocomplete(document.getElementById("myInput"), countries);
+
+      }
+
+         }) 
+
+});
+
+
+
+
+
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      a.style.position = "absolute";
+      a.style.top = "45px";
+      a.style.left="17px";
+      a.style.width = "90%";
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+
+
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+
+//var countries = ["Afghanistan"];
+
+
+
+
+
+
+
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+
+
+
+$("#travelExpense").submit(function(e){
+
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+           type: "POST",
+           url: url,
+           data: form.serialize(), 
+           success: function(data)
+           {
+                $('#travel-details').html(data);
+
+           }
+         });
+
+
+            e.preventDefault();
+
+
+            });
+
+
+
+
+
+</script>
 
 
 
