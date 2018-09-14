@@ -10,8 +10,18 @@ exit();
 
 }
 
+if($_SESSION['designation']!='Regional Manager')
+{
 
-$pdo = new PDO('mysql:host=198.71.227.90:3306;dbname=Fairway','myFairwayDB','Hbdq27$8'); 
+header('Location:http://localhost/Fairway/login.php');
+exit();
+
+}
+
+
+
+
+$pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
 
 $sql="SELECT name from employee WHERE id=:id";
 
@@ -58,7 +68,7 @@ $_SESSION['user_name']=$row['name'];
 
 .column1 {
   float: left;
-  width: 33.3%;
+  width: 20%;
   margin-bottom: 16px;
   padding: 0 8px;
   padding: 20px;
@@ -94,6 +104,7 @@ transform: scale(1.008);
 
 .title1 {
   color: grey;
+  font-size: 1em;
 }
 
 .button1 {
@@ -256,7 +267,7 @@ background-color: #A1BEB4;
                     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                       <div class="mdl-tabs__tab-bar">
                           <a href="#runningOffers" class="mdl-tabs__tab is-active" style="text-decoration: none;">Running Offers</a>
-                          <a href="#todaysale" class="mdl-tabs__tab" style="text-decoration: none;">Today's Sale</a>
+                          <!-- <a href="#todaysale" class="mdl-tabs__tab" style="text-decoration: none;">Today's Sale</a> -->
                       </div>
                     
                       <div class="mdl-tabs__panel is-active" id="runningOffers">

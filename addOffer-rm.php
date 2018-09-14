@@ -72,7 +72,7 @@ $_SESSION['user_name']=$row['name'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Offer RM - Fairway Pharmaceuticals | The Right choice </title>
+    <title>Add Offer - Fairway Pharmaceuticals | The Right choice </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -93,7 +93,7 @@ $_SESSION['user_name']=$row['name'];
               <!-- Navigation. We hide it in small screens. -->
               <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" href="admin.php"><i class="zmdi zmdi-home zmdi-hc-lg"></i> Dashboard</a>
-                <a class="mdl-navigation__link" href="addOffer-rm.php"><i class="zmdi zmdi-cake zmdi-hc-lg"></i> Add Offer </a>
+                <a class="mdl-navigation__link" href="addOffer.php"><i class="zmdi zmdi-cake zmdi-hc-lg"></i> Add Offer </a>
                 <a class="mdl-navigation__link" href="reports-rm.php"><i class="zmdi zmdi-chart zmdi-hc-lg"></i> Reports</a>
                 <a class="mdl-navigation__link" href="backend/logout.php"><i class="zmdi zmdi-lock-open zmdi-hc-lg"></i> Logout</a>
               </nav>
@@ -103,7 +103,7 @@ $_SESSION['user_name']=$row['name'];
             <span class="mdl-layout-title">Fairway</span>
             <nav class="mdl-navigation">
               <a class="mdl-navigation__link" href="admin.php"><i class="zmdi zmdi-home zmdi-hc-lg"></i>&nbsp;Dashboard</a>
-              <a class="mdl-navigation__link" href="addOffer-rm.php"><i class="zmdi zmdi-cake zmdi-hc-lg"></i>&nbsp;Add Offer </a>
+              <a class="mdl-navigation__link" href="addOffer.php"><i class="zmdi zmdi-cake zmdi-hc-lg"></i>&nbsp;Add Offer </a>
               <a class="mdl-navigation__link" href="reports-rm.php"><i class="zmdi zmdi-chart zmdi-hc-lg"></i>&nbsp;Reports</a> <hr/>
               <a class="mdl-navigation__link" href="backend/logout.php"><i class="zmdi zmdi-lock-open zmdi-hc-lg"></i>&nbsp;Logout</a>
             </nav>
@@ -113,6 +113,8 @@ $_SESSION['user_name']=$row['name'];
               <center> <h4 class="form-heading">Add Offer</h4> </center>
               <div class="form-container">
 
+                  
+
                   <form action="backend/add_offer.php" method="POST" enctype="multipart/form-data">
 
                   <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -121,6 +123,7 @@ $_SESSION['user_name']=$row['name'];
                     </span> <br>
                     <span class="mdl-textfield mdl-js-textfield">
                       <select class="mdl-textfield__input" id="medicineName-1" name="x2">
+            
                       </select>
                 </span> <br>
               
@@ -276,7 +279,8 @@ function productOffer(){
 
            </script>   
 
-<!--Start of Tawk.to Script-->
+
+           <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){

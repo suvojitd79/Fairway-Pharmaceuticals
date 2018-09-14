@@ -35,6 +35,7 @@ $_SESSION['user_name']=$row['name'];
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="css/user.css">
 
@@ -124,21 +125,43 @@ background-color: #A1BEB4;
         <div class="page-content"><!-- Your content goes here -->
             <center><h3 class="form-heading"><i class="zmdi zmdi-chart"></i>&nbsp;Your Report</h3></center>
                     
-                    <div id="report_content" style="clear: both;" style="width: 80%;
+
+                    <div style="width: 80%;
                             position: relative;
                             margin:0 auto;
                             line-height: 1.4em;overflow-x:scroll;
                                 overflow-y:hidden;">
+
+                    <input type="text" id="myInput2" onkeyup="mySearch2()" placeholder="Search for entry by date.." title="Type a date...">
+
+                   <!--      <table id="myTable2">
+                        <tr class="header">
+                        <th>Date of issue</th>
+                        <th>Medicine Name</th>
+                        <th>Price </th>
+                        <th>Receipt </th>
+                        <th>Sale </th>
+                      </tr> -->
+
+                    
+
+                    <div id="report_content">
+
+
+
             
+                    </div>
+
+
                     </div>
 
 
     </div>
     </main>
 </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
-            <script src="js/user.js"></script>
+ <!--  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script> -->
+            <!-- <script src="js/user.js"></script> -->
 
 
 
@@ -171,10 +194,12 @@ $(document).ready(function(){
 
                 }
 
-        setInterval(function(){fetch_report();},60000);        
+    // setInterval(function(){fetch_report();},600);        
 
 
                 });
+
+
 
 function mySearch2(){
 

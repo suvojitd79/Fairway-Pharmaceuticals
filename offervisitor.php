@@ -62,7 +62,7 @@ $_SESSION['user_name']=$row['name'];
 
 .column1 {
   float: left;
-  width: 33.3%;
+  width: 20%;
   margin-bottom: 16px;
   padding: 0 8px;
   padding: 20px;
@@ -98,6 +98,7 @@ transform: scale(1.008);
 
 .title1 {
   color: grey;
+  font-size: 1em;
 }
 
 .button1 {

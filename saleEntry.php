@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 
 
@@ -84,7 +83,70 @@ if(isset($_SESSION['sale_error'])){
 
   <!-- Include jQuery Popup Overlay -->
   <script src="./js/jquery-popup-overlay.js"></script>
+  <style type="text/css">
+      .button:hover{
+  background-color: #eee;
+  color: #555;
+}
 
+.button:active{
+  background: #e9e9e9;
+  position: relative;
+  top: 1px;
+  text-shadow: none;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+}
+
+.button[disabled], .button[disabled]:hover, .button[disabled]:active{
+  border-color: #eaeaea;
+  background: #fafafa;
+  cursor: default;
+  position: static;
+  color: #999;
+  /* Usually, !important should be avoided but here it's really needed :) */
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Smaller buttons styles */
+
+.button.small{
+  padding: 4px 12px;
+}
+
+
+.button.green, .button.red, .button.blue {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+  
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.3)), to(rgba(255,255,255,0)));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+  background-image: -moz-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+  background-image: -o-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+  background-image: linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
+}
+
+/* */
+
+.button.green{
+  background-color: #57a957;
+  border-color: #57a957;
+}
+
+.button.green:hover{
+  background-color: #62c462;
+}
+
+.button.green:active{
+  background: #57a957;
+}
+
+  </style>
 
 </head>
 <body style="  background: linear-gradient(to right, #22c1c3, #ffc0cb);">
@@ -117,7 +179,7 @@ if(isset($_SESSION['sale_error'])){
         </nav>
         </div>
 <main class="mdl-layout__content">
-<div class="page-content"><!-- Your content goes here -->
+<div class="page-content">              <!-- Your content goes here -->
 
     <center><h3 class="form-heading"><i class="zmdi zmdi-hospital"></i>&nbsp;Sale Entry</h3></center>
     
@@ -145,12 +207,17 @@ if(isset($_SESSION['sale_error'])){
 
 
 
+
+
+
         <div class="mdl-grid" id="danamic">    
 
            <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
                     <label for="">Medicine Name :</label>
-                    <select class="mdl-textfield__input" name="fields3[]" id="med_name" required>
+                    <select class="mdl-textfield__input med_name_dyna" name="fields3[]" id="med_name" required>
                     </select>
+                    <!-- <button class="small green button" id="get_price">Get Price</button> -->
+
                 </div>
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                 <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -226,7 +293,12 @@ if(isset($_SESSION['sale_error'])){
 
 
     <script src="js/user_entry.js"></script>
+
       <script type="text/javascript">
+
+
+     
+
 
         function executeOnSubmit()
             {
@@ -253,13 +325,6 @@ if(isset($_SESSION['sale_error'])){
         $(document).ready(function(){
 
 
-            
-
-            
-
-            
-            
-            
 
 
 
@@ -272,7 +337,7 @@ if(isset($_SESSION['sale_error'])){
                 success:function(data)
                     {
 
-                        $('#med_name').html(data);
+                        $('#med_name').html('<option selected disabled>Medicine Name</option>'+data);
 
                     }
 
@@ -338,5 +403,6 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 
   </script>
+
 </body>
 </html>

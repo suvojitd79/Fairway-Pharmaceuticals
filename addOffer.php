@@ -115,6 +115,8 @@ $_SESSION['user_name']=$row['name'];
               <center> <h4 class="form-heading">Add Offer</h4> </center>
               <div class="form-container">
 
+                  
+
                   <form action="backend/add_offer.php" method="POST" enctype="multipart/form-data">
 
                   <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

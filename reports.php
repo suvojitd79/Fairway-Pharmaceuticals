@@ -526,6 +526,30 @@ input[type=submit] {
 
 
 
+ // fetch_stock_report();
+
+
+ //      function fetch_stock_report()
+ //       {
+
+ //         $.ajax({
+
+ //           url:'backend/fetch_stock_.php',
+ //           method:'POST',
+ //           success:function(data){
+
+ //                 $('#stock-details').html(data);
+
+
+ //                     }
+
+ //                 })    
+
+ //       }
+
+
+
+
 });
 
 

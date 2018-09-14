@@ -1,59 +1,64 @@
 <?php
 
-// session_start();
+session_start();
 
-// if(!isset($_SESSION['login_id']))
-// {
+if(!isset($_SESSION['login_id']))
+{
 
-// header('Location:http://fairwaypharmaceuticlas.com/login.php');
-// exit();
+header('Location:http://localhost/Fairway/login.php');
+exit();
 
-// }
+}
 
-// $pdo = new PDO('mysql:host=107.180.50.162;dbname=fairPharmDB','fairPharmDBUser','h%XJQY-)J-E['); 
+if($_SESSION['designation']!='Medical Representative')
+{
 
+header('Location:http://localhost/Fairway/login.php');
+exit();
 
-// $sql="SELECT name from employee WHERE id=:id";
-
-// $sqlm=$pdo->prepare($sql);
-
-// $sqlm->execute(array('id'=>$_SESSION['login_id']));
-
-// $row=$sqlm->fetch();
-
-// $_SESSION['user_name']=$row['name'];
+}
 
 
-// if(isset($_SESSION['succ_travel']))
-//    {
+if(isset($_SESSION['succ_travel']))
+   {
 
 
-//     if($_SESSION['succ_travel']==1)
-//     {
+    if($_SESSION['succ_travel']==1)
+    {
 
-//         echo "<script>alert('All the fields must be filled!');</script>";
+        echo "<script>alert('All the fields must be filled!');</script>";
 
-//     }
-//     if($_SESSION['succ_travel']==0)
-//     {
+    }
+    if($_SESSION['succ_travel']==0)
+    {
 
-//         echo "<script>alert('Data Has been stored!');</script>";
-
-
-//     }
-
-//     unset($_SESSION['succ_travel']);
+        echo "<script>alert('Data Has been stored!');</script>";
 
 
-//    } 
+    }
+
+    unset($_SESSION['succ_travel']);
 
 
+   } 
 
 
+$pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
 
+$sql="SELECT name from employee WHERE id=:id";
 
+$sqlm=$pdo->prepare($sql);
+
+$sqlm->execute(array('id'=>$_SESSION['login_id']));
+
+$row=$sqlm->fetch();
+
+$_SESSION['user_name']=$row['name'];
 
 ?>
+
+
+
 
 
 <!DOCTYPE html>

@@ -37,11 +37,11 @@ $image=$target;
 $pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql1 = "SELECT name FROM medicine_details WHERE id=:id";
-$stml1 = $pdo->prepare($sql1);
-$stml1->execute(array('id'=>$name));
-$data1 = $stml1->fetch();
-$name = $data1['name'];
+// $sql1 = "SELECT name FROM medicine_details WHERE id=:id";
+// $stml1 = $pdo->prepare($sql1);
+// $stml1->execute(array('id'=>$name));
+// $data1 = $stml1->fetch();
+// $name = $data1['name'];
 
 
 

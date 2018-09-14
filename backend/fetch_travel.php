@@ -5,7 +5,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=fairway','root','');
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql="SELECT * FROM travel_info";
+$sql="SELECT * FROM travel_info ORDER BY entry_time DESC";
 
 $sqlm=$pdo->prepare($sql);
 

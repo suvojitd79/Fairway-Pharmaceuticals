@@ -99,7 +99,7 @@ if (isset($_SESSION['active_emp'])) {
 
     .column1 {
       float: left;
-      width: 33.3%;
+      width: 25%;
       margin-bottom: 16px;
       padding: 0 8px;
       padding: 20px;
@@ -136,6 +136,7 @@ if (isset($_SESSION['active_emp'])) {
 
     .title1 {
       color: grey;
+      font-size: 1em;
     }
 
     .button1 {
@@ -356,8 +357,8 @@ if (isset($_SESSION['active_emp'])) {
             <th>Offer Image</th>
           </tr>
       </thead>
-        <tbody>
-        <tr>
+        <tbody id="table-view">
+        <!-- <tr>
             <th class="mdl-data-table__cell--non-numeric">Nimonial Gold</th>
             <th>1*10</th>
             <th class="mdl-data-table__cell--non-numeric">Summer Offer</th>
@@ -386,7 +387,7 @@ if (isset($_SESSION['active_emp'])) {
             <th class="mdl-data-table__cell--non-numeric"> I am Remarks</th>
             <th>06/10/2018</th>            
             <th>Image</th>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 
@@ -449,6 +450,48 @@ if (isset($_SESSION['active_emp'])) {
 
 
       setInterval(function () { fetch_offer(); }, 1000);
+
+
+
+      offer_table_view();
+
+      function offer_table_view() {
+
+
+        $.ajax({
+
+          url: 'backend/offer_table_view.php',
+          method: 'POST',
+          success: function (data) {
+
+            $('#table-view').html(data);
+
+          }
+
+        })
+
+      }
+
+
+     // setInterval(function () { offer_table_view(); }, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

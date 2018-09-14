@@ -57,20 +57,20 @@ $_SESSION['user_name']=$row['name'];
 
 
     html {
-  box-sizing: border-box;
-}
+      box-sizing: border-box;
+          }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+          *, *:before, *:after {
+            box-sizing: inherit;
+          }
 
-.column1 {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-  padding: 20px;
-}
+          .column1 {
+            float: left;
+            width: 20%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+            padding: 20px;
+          }
 
 @media screen and (max-width: 650px) {
   .column1{
@@ -102,6 +102,7 @@ transform: scale(1.008);
 
 .title1 {
   color: grey;
+  font-size: 1em;
 }
 
 .button1 {
