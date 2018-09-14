@@ -23,6 +23,14 @@ if(isset($_POST['sale_entry']))
 
 	$field1=$_POST['fields1'];
 
+
+	$arr = explode('-', $field1);
+
+	$fields11 = $arr[2].'-'.$arr[1].'-'.$arr[0];
+
+
+
+
 	if(trim($_POST['fields2'])=='')
 		{
 			$_SESSION['sale_error']=1;
@@ -61,6 +69,21 @@ if(isset($_POST['sale_entry']))
 
 	}
 
+			//if sales<=receipt
+
+		for($i=0;$i<$x;$i++) {
+		
+		if($field5[$i] < $field6[$i])
+		{
+			$_SESSION['sale_flow_error']=1;
+			header('Location:http://localhost/Fairway/saleEntry.php');
+			exit();
+
+		}
+
+	}
+
+
 
 $pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
 
@@ -74,7 +97,7 @@ $sql = "INSERT INTO sale_entry(user_id,date_of_issue,stockist_id,medicine_id,pri
 
 $sqlm=$pdo->prepare($sql);
 
-$sqlm->execute(array('user_id'=>$_SESSION['login_id'],'date_of_issue'=>$field1,'stockist_id'=>$field2,'medicine_id'=>$field3[$i],'price'=>$field4[$i],'receipt'=>$field5[$i],'sales'=>$field6[$i],'remarks'=>$fields7));
+$sqlm->execute(array('user_id'=>$_SESSION['login_id'],'date_of_issue'=>$fields11,'stockist_id'=>$field2,'medicine_id'=>$field3[$i],'price'=>$field4[$i],'receipt'=>$field5[$i],'sales'=>$field6[$i],'remarks'=>$fields7));
 
 	}
 

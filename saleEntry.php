@@ -50,6 +50,19 @@ if(isset($_SESSION['sale_error'])){
 
     }
 
+    if(isset($_SESSION['sale_flow_error']))
+    {
+
+        echo "<script>alert('Sales value can not be greater than Receipt value!');</script>";
+        unset($_SESSION['sale_flow_error']);
+
+    }
+
+
+
+
+
+
 
 ?>
 

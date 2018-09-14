@@ -131,7 +131,9 @@ input[type=submit] {
           <div class="mdl-tabs__panel is-active" id="sales">
             <center>
               <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
+
+
+        <!--         <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
                   <span class="mdl-chip mdl-chip--contact">
                     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-face"></i></span>
                     <span class="mdl-chip__text"> <input type="text" id="S-Name-sales" placeholder="Search by Stockiest Name">
@@ -144,7 +146,21 @@ input[type=submit] {
                     <span class="mdl-chip__text"> <input type="month" placeholder="Month/Year" />
                     </span>
                   </span>
+                </div> -->
+
+
+
+                  <form autocomplete="off" style="margin:0 auto;" id="stockDetails" action="backend/fetch_stock_data.php">
+                <div class="autocomplete" style="width:300px;">
+                  <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 10px;left: -20px;"><i class="zmdi zmdi-face"></i></span>
+                  <input id="myInput1" type="text" name="searchMr1" placeholder="Search By Name..." required>
+                  <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 62px;left: 0px;"><i class="zmdi zmdi-calendar-alt"></i></span>
+                  <input type="month" id="E-month" placeholder="Month/Year" name="searchtime1" required />
+                  <input type="submit">
                 </div>
+              </form>
+
+
 
               </div>
               <div style="position:relative;margin: 0 auto; overflow-x:scroll; overflow-y: hidden;">
@@ -165,8 +181,8 @@ input[type=submit] {
                       <th>Closing Bal &#8377;</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody id="stock-details">
+                    <!-- <tr>
                       <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
                       <th>1*10</th>
                       <th>35</th>
@@ -204,7 +220,7 @@ input[type=submit] {
                       <th>1256</th>
                       <th>140</th>
                       <th>1849</th>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
                 <br>
@@ -650,6 +666,7 @@ $(function() {
           ,
       complete: function() {
         autocomplete(document.getElementById("myInput"), countries);
+        autocomplete(document.getElementById("myInput1"), countries);
 
       }
 
@@ -799,6 +816,34 @@ $("#travelExpense").submit(function(e){
 
 
             });
+
+
+
+
+$("#stockDetails").submit(function(e){
+
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+           type: "POST",
+           url: url,
+           data: form.serialize(), 
+           success: function(data)
+           {
+                $('#stock-details').html(data);
+
+           }
+         });
+
+
+            e.preventDefault();
+
+
+            });
+
+
 
 
 
