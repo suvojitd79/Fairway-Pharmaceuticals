@@ -700,7 +700,7 @@ input[type=submit] {
 
 <script>
 
-var countries = new Array();
+var employee = new Array();
 
 var dataFetch;
 
@@ -711,13 +711,13 @@ $(function() {
         url:      "backend/auto_fetch_mr.php",
         success:function(data)
           {
-            countries=data.split(',');
+            employee=data.split(',');
 
           }
           ,
       complete: function() {
-        autocomplete(document.getElementById("myInput"), countries);
-        autocomplete(document.getElementById("myInput1"), countries);
+        autocomplete(document.getElementById("myInput"), employee);
+        autocomplete(document.getElementById("myInput1"), employee);
 
       }
 
@@ -731,8 +731,6 @@ $(function() {
 
 
 function autocomplete(inp, arr) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
@@ -832,16 +830,11 @@ function autocomplete(inp, arr) {
 }
 
 
-//var countries = ["Afghanistan"];
 
 
 
 
-
-
-
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+/*initiate the autocomplete function on the "myInput" element, and pass along the employee array as possible autocomplete values:*/
 
 
 
