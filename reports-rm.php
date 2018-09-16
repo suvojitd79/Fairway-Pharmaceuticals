@@ -202,6 +202,7 @@ input[type=submit] {
                       <th>Issue/Sales Val &#8377;</th>
                       <th>Closing Qty</th>
                       <th>Closing Bal &#8377;</th>
+                      
                     </tr>
                   </thead>
                   <tbody id="stock-details">

@@ -40,6 +40,7 @@ if($sqlm->rowCount()>0)
 {
 	$k=0;
 	$test = '';
+
 foreach($rows as $key)
 		{
 
@@ -155,7 +156,15 @@ $key = array_keys($data);
 
 $count_keys = count($key);
 
-
+$x1=0;
+$x2=0;
+$x3=0;
+$x4=0;
+$x5=0;
+$x6=0;
+$x7=0;
+$x8=0;
+$x9=0;
 
 for($i=0;$i<$count_keys;$i++)
 {
@@ -163,6 +172,20 @@ for($i=0;$i<$count_keys;$i++)
 	$data[$key[$i]][4] = round($data[$key[$i]][4],2);
 	$data[$key[$i]][7] = round($data[$key[$i]][7],2);
 	$data[$key[$i]][9] = round($data[$key[$i]][9],2);
+
+		$x1+=$data[$key[$i]][1];
+		$x2+=$data[$key[$i]][2];
+		$x3+=$data[$key[$i]][3];
+		$x4+=$data[$key[$i]][4];
+		$x5+=$data[$key[$i]][5];
+		$x6+=$data[$key[$i]][6];
+		$x7+=$data[$key[$i]][7];
+		$x8+=$data[$key[$i]][8];
+		$x9+=$data[$key[$i]][9];
+
+
+
+
 
 	  $output.='<tr>
 				<td>'.$key[$i].'</td>
@@ -182,20 +205,23 @@ for($i=0;$i<$count_keys;$i++)
 }
 
 
+		$output.='<tr>
+			
+				<td><b>TOTAL</b></td>
+				<td>     </td>
+				<td></b>'.$x1.'</b></td>
+				<td></b>'.$x2.'</b></td>
+				<td></b>'.$x3.'</b></td>
+				<td></b>'.$x4.'</b></td>
+				<td></b>'.$x5.'</b></td>
+				<td></b>'.$x6.'</b></td>
+				<td></b>'.$x7.'</b></td>
+				<td></b>'.$x8.'</b></td>
+				<td></b>'.$x9.'</b></td>
+				
+				</tr>';
 
-				// $output.='<tr>
-				// <td><b>'."TOTAL :".'</b></td>
-				// <td><b>'." ".'</b></td>
-				// <td><b>'." ".'</b></td>
-				// <td><b>'.$totalD.'</b></td>
-				// <td><b>'.$totalF.'</b></td>
-				// <td><b>'.$totalTA.'</b></td>
-				// <td><b>'." ".'</b></td>
-				// <td><b>'.$totalDA.'</b></td>
-				// <td><b>'.$totalT.'</b></td>
-				// <td><b>'." ".'</b></td>
-				// </tr>';
-
+			
 
 }		
 

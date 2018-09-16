@@ -26,17 +26,21 @@ $answer='';
 	foreach ($row as $key) {
 	
 
+
+
+
+
 				$image_details = "backend/".$key['image'];
 
 
 
 
-				$sqll="SELECT packing FROM medicine_details WHERE  name=:name";
+				$sqll="SELECT name,packing FROM medicine_details WHERE  id=:id";
 
 
 				$stll=$pdo->prepare($sqll);
 
-				$stll->execute(array(':name'=>$key['product']));
+				$stll->execute(array(':id'=>$key['product']));
 
 				$roww=$stll->fetch();  
 
@@ -44,7 +48,7 @@ $answer='';
 
 
         $answer.='<tr>
-        		  <td>'.$key['product'].'</td>	
+        		  <td>'.$roww['name'].'</td>	
         		  <td>'.$roww['packing'].'</td>
         		  <td>'.$key['title'].'</td>
         		  <td>'.$key['quantity'].'</td>
