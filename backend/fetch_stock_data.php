@@ -1,5 +1,6 @@
 <?php
 
+// $_POST['searchMr1'] ==stockist name
 
 if(isset($_POST['searchMr1']) && isset($_POST['searchtime1']))
 {
@@ -18,9 +19,9 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
 $sql="SELECT  m.name,m.packing,sale.id,sale.price,sale.receipt,sale.sales,sale.closing_quan,sale.medicine_id
-		FROM  sale_entry sale LEFT OUTER JOIN employee e ON e.id = sale.user_id 
+		FROM  sale_entry sale LEFT OUTER JOIN stockist_details stock ON stock.id = sale.stockist_id 
 		LEFT OUTER JOIN medicine_details m ON m.id = sale.medicine_id
- 		WHERE e.name=:name  AND YEAR(DATE_FORMAT(sale.date_of_issue, '%Y-%m-%d'))=:year 
+ 		WHERE stock.name=:name  AND YEAR(DATE_FORMAT(sale.date_of_issue, '%Y-%m-%d'))=:year 
 		AND MONTH(DATE_FORMAT(sale.date_of_issue, '%Y-%m-%d'))=:month ORDER BY m.name ASC";
 
 
@@ -158,8 +159,10 @@ $count_keys = count($key);
 
 for($i=0;$i<$count_keys;$i++)
 {
-
-
+	$data[$key[$i]][2] = round($data[$key[$i]][2],2);
+	$data[$key[$i]][4] = round($data[$key[$i]][4],2);
+	$data[$key[$i]][7] = round($data[$key[$i]][7],2);
+	$data[$key[$i]][9] = round($data[$key[$i]][9],2);
 
 	  $output.='<tr>
 				<td>'.$key[$i].'</td>

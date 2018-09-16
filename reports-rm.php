@@ -176,7 +176,7 @@ input[type=submit] {
                   <form autocomplete="off" style="margin:0 auto;" id="stockDetails" action="backend/fetch_stock_data.php">
                 <div class="autocomplete" style="width:300px;">
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 10px;left: -20px;"><i class="zmdi zmdi-face"></i></span>
-                  <input id="myInput1" type="text" name="searchMr1" placeholder="Search By Name..." required>
+                  <input id="myInput1" type="text" name="searchMr1" placeholder="Search By Stockist Name..." required>
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 62px;left: 0px;"><i class="zmdi zmdi-calendar-alt"></i></span>
                   <input type="month" id="E-month" placeholder="Month/Year" name="searchtime1" required />
                   <input type="submit">
@@ -278,7 +278,7 @@ input[type=submit] {
                   <form autocomplete="off" style="margin:0 auto;" id="travelExpense" action="backend/fetch_expense_data_mr.php">
                 <div class="autocomplete" style="width:300px;">
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 10px;left: -20px;"><i class="zmdi zmdi-face"></i></span>
-                  <input id="myInput" type="text" name="searchMr" placeholder="Search By Name..." required>
+                  <input id="myInput" type="text" name="searchMr" placeholder="Search By MR Name..." required>
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 62px;left: 0px;"><i class="zmdi zmdi-calendar-alt"></i></span>
                   <input type="month" id="E-month" placeholder="Month/Year" name="searchtime" required />
                   <input type="submit">

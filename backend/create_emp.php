@@ -63,7 +63,7 @@ $row=$stl->fetch(PDO::FETCH_ASSOC);
 if($row)
 {
 $_SESSION['duplicate']=1;
-header('Location:http://http://localhost/Fairway/createEmployee.php');
+header('Location:http://localhost/Fairway/createEmployee.php');
 exit();
 }
 
@@ -77,7 +77,7 @@ $stml = $pdo->prepare($sql);
 $stml->execute(array('name'=>$name,'designation'=>$designation,'mb_number'=>$mb_number,'email'=>$email,'password'=>$password,'address'=>$address,'district'=>$address,'district'=>$district,'aadhar'=>$aadhar,'id_file'=>$idImage,'remarks'=>$remarks));
 
 $_SESSION['unable']=0;
-header('Location:http://http://localhost/Fairway/createEmployee.php');
+header('Location:http://localhost/Fairway/createEmployee.php');
 
 exit();
 

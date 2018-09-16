@@ -133,27 +133,13 @@ input[type=submit] {
               <div class="mdl-grid">
 
 
-        <!--         <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-face"></i></span>
-                    <span class="mdl-chip__text"> <input type="text" id="S-Name-sales" placeholder="Search by Stockiest Name">
-                    </span>
-                  </span>
-                </div>
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--1-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-calendar-alt"></i></span>
-                    <span class="mdl-chip__text"> <input type="month" placeholder="Month/Year" />
-                    </span>
-                  </span>
-                </div> -->
-
+    
 
 
                   <form autocomplete="off" style="margin:0 auto;" id="stockDetails" action="backend/fetch_stock_data.php">
                 <div class="autocomplete" style="width:300px;">
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 10px;left: -20px;"><i class="zmdi zmdi-face"></i></span>
-                  <input id="myInput1" type="text" name="searchMr1" placeholder="Search By Name..." required>
+                  <input id="myInput1" type="text" name="searchMr1" placeholder="Search By Stockist Name..." required>
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 62px;left: 0px;"><i class="zmdi zmdi-calendar-alt"></i></span>
                   <input type="month" id="E-month" placeholder="Month/Year" name="searchtime1" required />
                   <input type="submit">
@@ -182,45 +168,8 @@ input[type=submit] {
                     </tr>
                   </thead>
                   <tbody id="stock-details">
-                    <!-- <tr>
-                      <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
-                      <th>1*10</th>
-                      <th>35</th>
-                      <th>2560 </th>
-                      <th>250</th>
-                      <th>2254</th>
-                      <th>262</th>
-                      <th>150</th>
-                      <th>1256</th>
-                      <th>140</th>
-                      <th>1849</th>
-                    </tr>
-                    <tr>
-                      <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
-                      <th>1*10</th>
-                      <th>35</th>
-                      <th>2560 </th>
-                      <th>250</th>
-                      <th>2254</th>
-                      <th>262</th>
-                      <th>150</th>
-                      <th>1256</th>
-                      <th>140</th>
-                      <th>1849</th>
-                    </tr>
-                    <tr>
-                      <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
-                      <th>1*10</th>
-                      <th>35</th>
-                      <th>2560 </th>
-                      <th>250</th>
-                      <th>2254</th>
-                      <th>262</th>
-                      <th>150</th>
-                      <th>1256</th>
-                      <th>140</th>
-                      <th>1849</th>
-                    </tr> -->
+
+
                   </tbody>
                 </table>
                 <br>
@@ -239,23 +188,12 @@ input[type=submit] {
               <div class="mdl-grid">
 
 
-          <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-face"></i></span>
-                    <span class="mdl-chip__text"> 
-                      <input id="mrName" type="text" placeholder="Search by MR Name">
-                      <div id="suggestion-box"></div>
-                    </span>
-                  </span>
-                </div> -->
-
-
-
+        
 
                   <form autocomplete="off" style="margin:0 auto;" id="travelExpense" action="backend/fetch_expense_data_mr.php">
                 <div class="autocomplete" style="width:300px;">
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 10px;left: -20px;"><i class="zmdi zmdi-face"></i></span>
-                  <input id="myInput" type="text" name="searchMr" placeholder="Search By Name..." required>
+                  <input id="myInput" type="text" name="searchMr" placeholder="Search By MR Name..." required>
                   <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="position: absolute;top: 62px;left: 0px;"><i class="zmdi zmdi-calendar-alt"></i></span>
                   <input type="month" id="E-month" placeholder="Month/Year" name="searchtime" required />
                   <input type="submit">
@@ -266,14 +204,6 @@ input[type=submit] {
 
 
 
-<!-- 
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--1-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-calendar-alt"></i></span>
-                    <span class="mdl-chip__text"> <input type="month" id="E-month" placeholder="Month/Year" />
-                    </span>
-                  </span>
-                </div> -->
 
               </div>
 
@@ -300,54 +230,8 @@ input[type=submit] {
 
 
                   <tbody id="travel-details">
-                    <!-- <tr>
-                      <td>25/08/2018</td>
-                      <td class="mdl-data-table__cell--non-numeric">Kolkata</td>
-                      <td class="mdl-data-table__cell--non-numeric">Hawdara</td>
-                      <td>50</td>
-                      <td>2</td>
-                      <td>100</td>
-                      <td>HQ</td>
-                      <td>250</td>
-                      <td>350</td>
-                      <td class="mdl-data-table__cell--non-numeric">Just testing</td>
-                    </tr>
-                    <tr>
-                      <td>26/08/2018</td>
-                      <td class="mdl-data-table__cell--non-numeric">Mumbai</td>
-                      <td class="mdl-data-table__cell--non-numeric">Pune</td>
-                      <td>80</td>
-                      <td>2.5</td>
-                      <td>155</td>
-                      <td>EX-HQ</td>
-                      <td>210</td>
-                      <td>365</td>
-                      <td class="mdl-data-table__cell--non-numeric">Sync data like this</td>
-                    </tr>
-                    <tr>
-                      <td>30/08/2018</td>
-                      <td class="mdl-data-table__cell--non-numeric">Delhi</td>
-                      <td class="mdl-data-table__cell--non-numeric">NCR </td>
-                      <td>151 </td>
-                      <td>3.5</td>
-                      <td>528.5</td>
-                      <td>Other</td>
-                      <td>200</td>
-                      <td>728.5</td>
-                      <td class="mdl-data-table__cell--non-numeric">Just testing</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td class="mdl-data-table__cell--non-numeric"></td>
-                      <td class="mdl-data-table__cell--non-numeric"></td>
-                      <td><b>Total = 151 </b> </td>
-                      <td></td>
-                      <td><b>528.5 </b></td>
-                      <td></td>
-                      <td><b>200 </b></td>
-                      <td><b>728.5 </b></td>
-                      <td class="mdl-data-table__cell--non-numeric"></td>
-                    </tr> -->
+                  
+
                   </tbody>
 
 
@@ -681,7 +565,7 @@ $(function() {
 
     $.ajax({
         method:     "post",
-        url:      "backend/auto_fetch_mr.php",
+        url:      "backend/auto_fetch_stockist.php",
         success:function(data)
           {
             employee=data.split(',');
@@ -689,7 +573,7 @@ $(function() {
           }
           ,
       complete: function() {
-        autocomplete(document.getElementById("myInput"), employee);
+       // autocomplete(document.getElementById("myInput"), employee);
         autocomplete(document.getElementById("myInput1"), employee);
 
       }
@@ -697,6 +581,54 @@ $(function() {
          }) 
 
 });
+
+
+
+
+
+
+var employee1 = new Array();
+
+var dataFetch1;
+
+$(function() {
+
+    $.ajax({
+        method:     "post",
+        url:      "backend/auto_fetch_mr.php",
+        success:function(data)
+          {
+            employee1=data.split(',');
+
+          }
+          ,
+      complete: function() {
+        autocomplete(document.getElementById("myInput"), employee1);
+       // autocomplete(document.getElementById("myInput1"), employee);
+
+      }
+
+         }) 
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
