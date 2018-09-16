@@ -24,6 +24,21 @@ $answer='';
 
 
 	foreach ($row as $key) {
+
+
+
+			$sql1="SELECT name FROM medicine_details WHERE id=:id";
+
+
+			$stl1=$pdo->prepare($sql1);
+
+			$stl1->execute(array(':id'=>$key['product']));
+
+			$row1=$stl1->fetch();
+
+
+
+
 		
 
 
@@ -33,7 +48,7 @@ $answer='';
 				      <img src="backend/'.$key['image'].'"  style="width:100%;">
 				      <div class="container1">
 				        <h6 >Offer: '.$key['title'].'</h6>
-				        <h4 class="title1">Product :'.$key['product'].'</h4>
+				        <h4 class="title1">Product :'.$row1['name'].'</h4>
 				        <p>Quantity: '.$key['quantity'].'</p>
 				        <p>Free: '.$key['free'].'</p>
 				        <p>'.$key['description'].'</p>

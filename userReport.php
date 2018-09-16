@@ -41,7 +41,7 @@ $_SESSION['user_name']=$row['name'];
 
 <style type="text/css">
         
-#myInput2 {
+#myInput2,#MyInput3 {
   background-image: url('search_emp.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
@@ -89,6 +89,65 @@ background-color: #A1BEB4;
 }
 
 
+
+
+
+
+
+
+
+
+#input2 {
+  background-image: url('search_emp.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 20px 20px 12px 63px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  background-size: 45px 45px;
+}
+
+#myTable3 {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable3 th, #myTable3 td {
+  text-align: left;
+  padding: 12px;
+  border:1px solid #eee;
+}
+
+#myTable3 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable3 tr.header{
+
+background-color: #A1BEB4;
+
+}
+
+
+#myTable3 tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+#myTable3 tr.header:hover{
+
+background-color: #A1BEB4;
+
+}
+
+
+
+
+
     </style>
 
 </head>
@@ -126,13 +185,35 @@ background-color: #A1BEB4;
             <center><h3 class="form-heading"><i class="zmdi zmdi-chart"></i>&nbsp;Your Report</h3></center>
                     
 
-                    <div style="width: 80%;
+         
+
+    </div>
+
+
+
+
+
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+          <div class="mdl-tabs__tab-bar">
+            <a href="#runningOffers" class="mdl-tabs__tab is-active" style="text-decoration: none;">Stock Report</a>
+            <a href="#tableView" class="mdl-tabs__tab" style="text-decoration: none;">Travel Report</a>
+         
+          </div>
+
+          <div class="mdl-tabs__panel is-active" id="runningOffers">
+
+
+
+                          <div style="width: 80%;
                             position: relative;
                             margin:0 auto;
                             line-height: 1.4em;overflow-x:scroll;
                                 overflow-y:hidden;">
 
                     <input type="text" id="myInput2" onkeyup="mySearch2()" placeholder="Search for entry by date.." title="Type a date...">
+
+                    <input type="text" id="MyInput3" onkeyup="mySearch3()" placeholder="Search for entry by Stockist name.." title="Type a Stockist name...">
 
                    <!--      <table id="myTable2">
                         <tr class="header">
@@ -155,8 +236,102 @@ background-color: #A1BEB4;
 
                     </div>
 
+            
 
-    </div>
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+          <div class="mdl-tabs__panel" id="tableView" style="position: relative;margin:0 auto;line-height: 1.4em;overflow-x:scroll;overflow-y:hidden;">
+
+
+                          <div style="width: 80%;
+                            position: relative;
+                            margin:0 auto;
+                            line-height: 1.4em;overflow-x:scroll;
+                                overflow-y:hidden;">
+
+                    <input type="text" id="input2" onkeyup="mySearch4()" placeholder="Search for entry by date.." title="Type a date...">
+
+                 <!--    <input type="text" id="input3" onkeyup="mySearch5()" placeholder="Search for entry by Stockist name.." title="Type a Stockist name..."> -->
+
+      
+
+                    
+
+                    <div id="report_content1">
+
+
+
+            
+                    </div>
+
+
+                    </div>
+
+
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </main>
 </div>
  <!--  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -197,6 +372,57 @@ $(document).ready(function(){
     // setInterval(function(){fetch_report();},600);        
 
 
+
+       fetch_report1();
+
+
+        function fetch_report1(){
+
+
+          $.ajax({
+
+
+            url:'backend/fetch_travel_info.php',
+            method:'POST',
+            success:function(data){
+
+                $('#report_content1').html(data);
+
+
+                }
+
+
+               })  
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 });
 
 
@@ -208,6 +434,69 @@ function mySearch2(){
     input=document.getElementById('myInput2');
     filter=input.value.toUpperCase(); 
     table=document.getElementById('myTable2');
+    tr=table.getElementsByTagName('tr');
+      for(i=0;i<tr.length;i++){
+        td = tr[i].getElementsByTagName('td')[0];
+        if(td){
+          if(td.innerHTML.toUpperCase().indexOf(filter)>-1)
+              {
+                tr[i].style.display="";
+
+              }
+           else{
+
+                tr[i].style.display='none';
+
+           }   
+
+
+        }
+     
+      }
+
+
+}
+
+
+
+function mySearch3(){
+
+    var input,filter,table,tr,td,i;
+
+    input=document.getElementById('MyInput3');
+    filter=input.value.toUpperCase(); 
+    table=document.getElementById('myTable2');
+    tr=table.getElementsByTagName('tr');
+      for(i=0;i<tr.length;i++){
+        td = tr[i].getElementsByTagName('td')[1];
+        if(td){
+          if(td.innerHTML.toUpperCase().indexOf(filter)>-1)
+              {
+                tr[i].style.display="";
+
+              }
+           else{
+
+                tr[i].style.display='none';
+
+           }   
+
+
+        }
+     
+      }
+
+
+}
+
+
+function mySearch4(){
+
+    var input,filter,table,tr,td,i;
+
+    input=document.getElementById('input2');
+    filter=input.value.toUpperCase(); 
+    table=document.getElementById('myTable3');
     tr=table.getElementsByTagName('tr');
       for(i=0;i<tr.length;i++){
         td = tr[i].getElementsByTagName('td')[0];
