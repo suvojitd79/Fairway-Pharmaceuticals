@@ -9,6 +9,15 @@
 
     }
 
+
+    // if(isset($_SESSION['closing_q']))
+    // {
+
+    // 	echo "<script>alert(".$_SESSION['closing_q'].")</script>";
+    // }
+
+
+
  ?> 
 
 

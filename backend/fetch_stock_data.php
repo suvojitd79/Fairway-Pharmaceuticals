@@ -2,6 +2,9 @@
 
 // $_POST['searchMr1'] ==stockist name
 
+session_start();
+
+
 if(isset($_POST['searchMr1']) && isset($_POST['searchtime1']))
 {
 
@@ -11,10 +14,31 @@ $year = $time[0];
 
 $month = $time[1];
 
+if($month==1)
+{
+
+$month=12;
+$year=$year-1;
+}
+
+
+
 
 $pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+
+
+
+$sq = "SELECT id FROM stockist_details WHERE name=:name";
+$sl = $pdo->prepare($sq);
+$sl->execute(array(':name'=>$_POST['searchMr1']));
+$r = $sl->fetch();
+$stock_id = $r['id'];
+
+
 
 
 
@@ -44,7 +68,8 @@ if($sqlm->rowCount()>0)
 foreach($rows as $key)
 		{
 
-		$med_id = $key['medicine_id'];		
+		$med_id = $key['medicine_id'];
+				
 
 		if(isset($data[$key['name']]))	
 		{	
@@ -52,7 +77,7 @@ foreach($rows as $key)
 			//$test.="1st";
 			//update 
 
-			$closing_quantity = $data[$key['name']][1] +$key['receipt']-$key['sales'];
+			$closing_quantity = $data[$key['name']][1];
 			$data[$key['name']][1]=$closing_quantity;
 			$opening_balance = $closing_quantity * $key['price'];
 			$data[$key['name']][2]=$opening_balance;
@@ -65,8 +90,9 @@ foreach($rows as $key)
 			$data[$key['name']][6]=$data[$key['name']][6]+$key['sales'];
 			$issue_value = $key['sales'] * $key['price'];
 			$data[$key['name']][7]=$data[$key['name']][7] + $issue_value;
-			$data[$key['name']][8]=$closing_quantity;
-			$data[$key['name']][9]=$opening_balance;
+			$data[$key['name']][8]= $data[$key['name']][8] + $key['receipt']-$key['sales'];
+			$data[$key['name']][9]=$data[$key['name']][8]*$key['price'];
+
 
 			//update the closing quantity			
 
@@ -74,41 +100,48 @@ foreach($rows as $key)
 
 			$sqlm1=$pdo->prepare($sql1);
 
-			$sqlm1->execute(array(':closing_quann'=>$closing_quantity,':idd'=>$key['id']));
+			$sqlm1->execute(array(':closing_quann'=>$data[$key['name']][8],':idd'=>$key['id']));
 				
 
 		}
 		else{
 
 		
-			$closing_q=0;
+			$closing_q = 0;
+		
+			
 
 			//check for the previous month data
 
 
 
-			$sqlll="SELECT MAX(closing_quan) as max_clo FROM sale_entry WHERE YEAR(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:year 
-					AND MONTH(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:month AND medicine_id=:medicine_id";
+	$sqlll="SELECT MAX(closing_quan) as max_clo FROM sale_entry WHERE YEAR(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:year 
+  AND MONTH(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:month AND medicine_id=:medicine_id AND stockist_id=:s_id";
 
 			$sqlmmm=$pdo->prepare($sqlll);
 
-			$sqlmmm->execute(array(':year'=>$year,'month'=>$month-1,':medicine_id'=>$med_id));
+			$sqlmmm->execute(array(':year'=>$year,'month'=>$month-1,':medicine_id'=>$med_id,':s_id'=>$stock_id));
 
+			$rowsss=$sqlmmm->fetch();
+
+		
 
 			$okl='';
 
-			if($sqlmmm->rowCount()!=0)
+			if($sqlmmm->fetch(PDO::FETCH_ASSOC))
 			{
-				$rowsss=$sqlmmm->fetch();
-
+				
 				$closing_q = $rowsss['max_clo'];
+
+				//$_SESSION['closing_q']=5;
 
 			}
 			
 
 
 			$data[$key['name']][0]=$key['packing'];
-			$closing_quantity = $closing_q +$key['receipt']-$key['sales'];
+			//$closing_quantity = $closing_q +$key['receipt']-$key['sales'];
+			$closing_quantity=$closing_q;	
 			$data[$key['name']][1]=$closing_quantity;
 			$opening_balance = $closing_quantity * $key['price'];
 			$data[$key['name']][2]=$opening_balance;
@@ -121,8 +154,8 @@ foreach($rows as $key)
 			$data[$key['name']][6]=$key['sales'];
 			$issue_value = $key['sales'] * $key['price'];
 			$data[$key['name']][7]=$issue_value;
-			$data[$key['name']][8]=$closing_quantity;
-			$data[$key['name']][9]=$opening_balance;
+			$data[$key['name']][8]= $closing_q +$key['receipt']-$key['sales'];
+			$data[$key['name']][9]=$data[$key['name']][8]*$key['price'];
 
 
 
@@ -132,7 +165,7 @@ foreach($rows as $key)
 
 			$sqlm1=$pdo->prepare($sql1);
 
-			$sqlm1->execute(array(':closing_quann'=>$closing_quantity,':idd'=>$key['id']));
+			$sqlm1->execute(array(':closing_quann'=>$data[$key['name']][8],':idd'=>$key['id']));
 				
 
 
@@ -209,15 +242,15 @@ for($i=0;$i<$count_keys;$i++)
 			
 				<td><b>TOTAL</b></td>
 				<td>     </td>
-				<td></b>'.$x1.'</b></td>
-				<td></b>'.$x2.'</b></td>
-				<td></b>'.$x3.'</b></td>
-				<td></b>'.$x4.'</b></td>
-				<td></b>'.$x5.'</b></td>
-				<td></b>'.$x6.'</b></td>
-				<td></b>'.$x7.'</b></td>
-				<td></b>'.$x8.'</b></td>
-				<td></b>'.$x9.'</b></td>
+				<td><b>'.$x1.'</b></td>
+				<td><b>'.$x2.'</b></td>
+				<td><b>'.$x3.'</b></td>
+				<td><b>'.$x4.'</b></td>
+				<td><b>'.$x5.'</b></td>
+				<td><b>'.$x6.'</b></td>
+				<td><b>'.$x7.'</b></td>
+				<td><b>'.$x8.'</b></td>
+				<td><b>'.$x9.'</b></td>
 				
 				</tr>';
 

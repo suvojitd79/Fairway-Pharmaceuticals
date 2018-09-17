@@ -147,11 +147,11 @@ $_SESSION['user_name']=$row['name'];
                          <input type="radio" name="x4" value="Out Station"> Out Station  
                   </span> <br>
                     <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="number"  id="distance" name="x5">
+                        <input class="mdl-textfield__input" type="number" step=0.01  id="distance" name="x5">
                         <label class="mdl-textfield__label" for="distance">Distance in K.M.</label>
                     </span> <br>
                     <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="number"  id="fare" name="x6">
+                        <input class="mdl-textfield__input" type="number" step=0.01 id="fare" name="x6">
                         <label class="mdl-textfield__label" for="fare">Fare per KM (&#8377)</label>
                     </span> <br>
                     <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
