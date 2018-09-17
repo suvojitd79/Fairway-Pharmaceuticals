@@ -17,7 +17,7 @@ $month = $time[1];
 if($month==1)
 {
 
-$month=12;
+$month=13;
 $year=$year-1;
 }
 
@@ -115,28 +115,32 @@ foreach($rows as $key)
 
 
 
-	$sqlll="SELECT MAX(closing_quan) as max_clo FROM sale_entry WHERE YEAR(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:year 
-  AND MONTH(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:month AND medicine_id=:medicine_id AND stockist_id=:s_id";
+	$sqlll="SELECT MAX(closing_quan) as max_clo FROM sale_entry 
+			WHERE (YEAR(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:year 
+  			AND MONTH(DATE_FORMAT(date_of_issue, '%Y-%m-%d'))=:month 
+  			AND medicine_id=:medicine_id AND stockist_id=:s_id ) ";
 
+			
 			$sqlmmm=$pdo->prepare($sqlll);
 
 			$sqlmmm->execute(array(':year'=>$year,'month'=>$month-1,':medicine_id'=>$med_id,':s_id'=>$stock_id));
 
 			$rowsss=$sqlmmm->fetch();
 
-		
+			//$count_rows = count($rowsss);
 
 			$okl='';
 
-			if($sqlmmm->fetch(PDO::FETCH_ASSOC))
+			if(isset($rowsss['max_clo']))
 			{
 				
 				$closing_q = $rowsss['max_clo'];
-
-				//$_SESSION['closing_q']=5;
+				//$_SESSION['closing_q'] = 25;
 
 			}
-			
+
+			//$_SESSION['closing_q'] = $rowsss['max_clo'];
+
 
 
 			$data[$key['name']][0]=$key['packing'];
