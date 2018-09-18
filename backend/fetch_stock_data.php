@@ -69,6 +69,29 @@ foreach($rows as $key)
 		{
 
 		$med_id = $key['medicine_id'];
+
+
+
+	
+
+			// $sq1 = "SELECT id FROM stockist_details WHERE name=:name";
+			// $sl1 = $pdo->prepare($sq1);
+			// $sl1->execute(array(':name'=>$_POST['searchMr1']));
+			// $r1 = $sl->fetch();
+			// $stock_id = $r['id'];
+
+
+
+
+
+
+
+
+
+
+
+
+
 				
 
 		if(isset($data[$key['name']]))	
@@ -91,7 +114,7 @@ foreach($rows as $key)
 			$issue_value = $key['sales'] * $key['price'];
 			$data[$key['name']][7]=$data[$key['name']][7] + $issue_value;
 			$data[$key['name']][8]= $data[$key['name']][8] + $key['receipt']-$key['sales'];
-			$data[$key['name']][9]=$data[$key['name']][8]*$key['price'];
+			$data[$key['name']][9]=$data[$key['name']][9]+($key['receipt']-$key['sales'])*$key['price'];
 
 
 			//update the closing quantity			

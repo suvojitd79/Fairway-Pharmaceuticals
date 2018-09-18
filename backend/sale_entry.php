@@ -71,17 +71,17 @@ if(isset($_POST['sale_entry']))
 
 			//if sales<=receipt
 
-		for($i=0;$i<$x;$i++) {
+	// 	for($i=0;$i<$x;$i++) {
 		
-		if($field5[$i] < $field6[$i])
-		{
-			$_SESSION['sale_flow_error']=1;
-			header('Location:http://localhost/Fairway/saleEntry.php');
-			exit();
+	// 	if($field5[$i] < $field6[$i])
+	// 	{
+	// 		$_SESSION['sale_flow_error']=1;
+	// 		header('Location:http://localhost/Fairway/saleEntry.php');
+	// 		exit();
 
-		}
+	// 	}
 
-	}
+	// }
 
 
 
