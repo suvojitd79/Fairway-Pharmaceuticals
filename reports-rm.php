@@ -1,22 +1,35 @@
 <?php 
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['login_id']))
-    {
+if(!isset($_SESSION['login_id']))
+{
 
-    header('Location:http://localhost/Fairway/login.php');
-    exit();
+header('Location:http://localhost/Fairway/login.php');
+exit();
 
-    }
+}
+
+if($_SESSION['designation']!='Regional Manager')
+{
+
+header('Location:http://localhost/Fairway/login.php');
+exit();
+
+}
 
 
-    if(isset($_SESSION['closing_q']))
-    {
 
-      echo "<script>alert(".$_SESSION['closing_q'].")</script>";
+$pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
 
-      unset($_SESSION['closing_q']);
-    }
+$sql="SELECT name from employee WHERE id=:id";
+
+$sqlm=$pdo->prepare($sql);
+
+$sqlm->execute(array('id'=>$_SESSION['login_id']));
+
+$row=$sqlm->fetch();
+
+$_SESSION['user_name']=$row['name'];
 
 
 
