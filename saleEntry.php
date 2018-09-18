@@ -221,7 +221,7 @@ if(isset($_SESSION['sale_error'])){
                 </div>
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                 <span class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="number" step=0.01 id="price" name="fields4[]" placeholder="Price (&#8377;)" required>             
+            <input class="mdl-textfield__input" type="number" step=0.01 id="price" name="fields4[]" placeholder="Price (&#8377;)">             
                 </span>   
                 </div>
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-phone" style="padding-bottom:10px;">

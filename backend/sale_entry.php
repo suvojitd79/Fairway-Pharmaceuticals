@@ -59,7 +59,7 @@ if(isset($_POST['sale_entry']))
 
 	for($i=0;$i<$x;$i++) {
 		
-		if(trim($field3[$i])=='' || trim($field4[$i])=='' || trim($field5[$i])=='' || trim($field6[$i])=='')
+		if(trim($field3[$i])=='' || trim($field5[$i])=='' || trim($field6[$i])=='')
 		{
 			$_SESSION['sale_error']=1;
 			header('Location:http://localhost/Fairway/saleEntry.php');
@@ -97,6 +97,35 @@ $test = '';
 
 for($i=0;$i<$x;$i++)
 	{
+
+
+			//get the price from database if it's not given
+
+
+			if(trim($field4[$i])=='')
+			{
+
+
+
+
+
+
+			$sql12="SELECT selling_price FROM medicine_details WHERE id=:idd";
+
+			$sqlm12=$pdo->prepare($sql12);
+
+			$sqlm12->execute(array(':idd'=>$field3[$i]));
+
+			$row12 = $sqlm12->fetch();
+
+			$field4[$i] = $row12['selling_price'];
+
+
+			}
+
+
+
+
 
 
 		//check offer exist or not 
