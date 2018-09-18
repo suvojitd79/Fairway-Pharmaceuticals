@@ -1,42 +1,26 @@
-<?php
+<?php 
+    session_start();
 
-session_start();
+    if(!isset($_SESSION['login_id']))
+    {
 
-if(!isset($_SESSION['login_id']))
-{
+    header('Location:http://localhost/Fairway/login.php');
+    exit();
 
-header('Location:http://localhost/Fairway/login.php');
-exit();
-
-}
-
-if($_SESSION['designation']!='Regional Manager')
-{
-
-header('Location:http://localhost/Fairway/login.php');
-exit();
-
-}
+    }
 
 
+    if(isset($_SESSION['closing_q']))
+    {
 
+      echo "<script>alert(".$_SESSION['closing_q'].")</script>";
 
-$pdo = new PDO('mysql:host=localhost;dbname=fairway','root',''); 
-
-$sql="SELECT name from employee WHERE id=:id";
-
-$sqlm=$pdo->prepare($sql);
-
-$sqlm->execute(array('id'=>$_SESSION['login_id']));
-
-$row=$sqlm->fetch();
-
-$_SESSION['user_name']=$row['name'];
+      unset($_SESSION['closing_q']);
+    }
 
 
 
-?>
-
+ ?> 
 
 
 <!DOCTYPE html>
@@ -115,7 +99,9 @@ input[type=submit] {
 
 <body style="background: linear-gradient(to right, #9796f0, #fbc7d4);">
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
+
+    
+   <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">Fairway</span>
@@ -141,6 +127,11 @@ input[type=submit] {
         <a class="mdl-navigation__link" href="backend/logout.php"><i class="zmdi zmdi-lock-open zmdi-hc-lg"></i>&nbsp;&nbsp;Logout</a>
       </nav>
     </div>
+
+
+
+
+
     <main class="mdl-layout__content">
 
       <div class="page-content">
@@ -156,21 +147,7 @@ input[type=submit] {
               <div class="mdl-grid">
 
 
-        <!--         <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-face"></i></span>
-                    <span class="mdl-chip__text"> <input type="text" id="S-Name-sales" placeholder="Search by Stockiest Name">
-                    </span>
-                  </span>
-                </div>
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--1-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-calendar-alt"></i></span>
-                    <span class="mdl-chip__text"> <input type="month" placeholder="Month/Year" />
-                    </span>
-                  </span>
-                </div> -->
-
+    
 
 
                   <form autocomplete="off" style="margin:0 auto;" id="stockDetails" action="backend/fetch_stock_data.php">
@@ -202,49 +179,11 @@ input[type=submit] {
                       <th>Issue/Sales Val &#8377;</th>
                       <th>Closing Qty</th>
                       <th>Closing Bal &#8377;</th>
-                      
                     </tr>
                   </thead>
                   <tbody id="stock-details">
-                    <!-- <tr>
-                      <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
-                      <th>1*10</th>
-                      <th>35</th>
-                      <th>2560 </th>
-                      <th>250</th>
-                      <th>2254</th>
-                      <th>262</th>
-                      <th>150</th>
-                      <th>1256</th>
-                      <th>140</th>
-                      <th>1849</th>
-                    </tr>
-                    <tr>
-                      <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
-                      <th>1*10</th>
-                      <th>35</th>
-                      <th>2560 </th>
-                      <th>250</th>
-                      <th>2254</th>
-                      <th>262</th>
-                      <th>150</th>
-                      <th>1256</th>
-                      <th>140</th>
-                      <th>1849</th>
-                    </tr>
-                    <tr>
-                      <th class="mdl-data-table__cell--non-numeric">Fairway cold</th>
-                      <th>1*10</th>
-                      <th>35</th>
-                      <th>2560 </th>
-                      <th>250</th>
-                      <th>2254</th>
-                      <th>262</th>
-                      <th>150</th>
-                      <th>1256</th>
-                      <th>140</th>
-                      <th>1849</th>
-                    </tr> -->
+
+
                   </tbody>
                 </table>
                 <br>
@@ -263,18 +202,7 @@ input[type=submit] {
               <div class="mdl-grid">
 
 
-          <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--3-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-face"></i></span>
-                    <span class="mdl-chip__text"> 
-                      <input id="mrName" type="text" placeholder="Search by MR Name">
-                      <div id="suggestion-box"></div>
-                    </span>
-                  </span>
-                </div> -->
-
-
-
+        
 
                   <form autocomplete="off" style="margin:0 auto;" id="travelExpense" action="backend/fetch_expense_data_mr.php">
                 <div class="autocomplete" style="width:300px;">
@@ -290,14 +218,6 @@ input[type=submit] {
 
 
 
-<!-- 
-                <div class="mdl-cell mdl-cell--6-col mdl-cell--1-col-phone">
-                  <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="zmdi zmdi-calendar-alt"></i></span>
-                    <span class="mdl-chip__text"> <input type="month" id="E-month" placeholder="Month/Year" />
-                    </span>
-                  </span>
-                </div> -->
 
               </div>
 
@@ -324,54 +244,8 @@ input[type=submit] {
 
 
                   <tbody id="travel-details">
-                    <!-- <tr>
-                      <td>25/08/2018</td>
-                      <td class="mdl-data-table__cell--non-numeric">Kolkata</td>
-                      <td class="mdl-data-table__cell--non-numeric">Hawdara</td>
-                      <td>50</td>
-                      <td>2</td>
-                      <td>100</td>
-                      <td>HQ</td>
-                      <td>250</td>
-                      <td>350</td>
-                      <td class="mdl-data-table__cell--non-numeric">Just testing</td>
-                    </tr>
-                    <tr>
-                      <td>26/08/2018</td>
-                      <td class="mdl-data-table__cell--non-numeric">Mumbai</td>
-                      <td class="mdl-data-table__cell--non-numeric">Pune</td>
-                      <td>80</td>
-                      <td>2.5</td>
-                      <td>155</td>
-                      <td>EX-HQ</td>
-                      <td>210</td>
-                      <td>365</td>
-                      <td class="mdl-data-table__cell--non-numeric">Sync data like this</td>
-                    </tr>
-                    <tr>
-                      <td>30/08/2018</td>
-                      <td class="mdl-data-table__cell--non-numeric">Delhi</td>
-                      <td class="mdl-data-table__cell--non-numeric">NCR </td>
-                      <td>151 </td>
-                      <td>3.5</td>
-                      <td>528.5</td>
-                      <td>Other</td>
-                      <td>200</td>
-                      <td>728.5</td>
-                      <td class="mdl-data-table__cell--non-numeric">Just testing</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td class="mdl-data-table__cell--non-numeric"></td>
-                      <td class="mdl-data-table__cell--non-numeric"></td>
-                      <td><b>Total = 151 </b> </td>
-                      <td></td>
-                      <td><b>528.5 </b></td>
-                      <td></td>
-                      <td><b>200 </b></td>
-                      <td><b>728.5 </b></td>
-                      <td class="mdl-data-table__cell--non-numeric"></td>
-                    </tr> -->
+                  
+
                   </tbody>
 
 
@@ -549,6 +423,7 @@ input[type=submit] {
  //     setInterval(function(){fetch_travel_report();},1000);
 
 
+
  // fetch_stock_report();
 
 
@@ -561,7 +436,7 @@ input[type=submit] {
  //           method:'POST',
  //           success:function(data){
 
- //                 $('#travel-details').html(data);
+ //                 $('#stock-details').html(data);
 
 
  //                     }
@@ -569,11 +444,6 @@ input[type=submit] {
  //                 })    
 
  //       }
-
-
-
-
-
 
 
 
@@ -709,7 +579,7 @@ $(function() {
 
     $.ajax({
         method:     "post",
-        url:      "backend/auto_fetch_mr.php",
+        url:      "backend/auto_fetch_stockist.php",
         success:function(data)
           {
             employee=data.split(',');
@@ -717,7 +587,7 @@ $(function() {
           }
           ,
       complete: function() {
-        autocomplete(document.getElementById("myInput"), employee);
+       // autocomplete(document.getElementById("myInput"), employee);
         autocomplete(document.getElementById("myInput1"), employee);
 
       }
@@ -731,7 +601,57 @@ $(function() {
 
 
 
+var employee1 = new Array();
+
+var dataFetch1;
+
+$(function() {
+
+    $.ajax({
+        method:     "post",
+        url:      "backend/auto_fetch_mr.php",
+        success:function(data)
+          {
+            employee1=data.split(',');
+
+          }
+          ,
+      complete: function() {
+        autocomplete(document.getElementById("myInput"), employee1);
+       // autocomplete(document.getElementById("myInput1"), employee);
+
+      }
+
+         }) 
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
@@ -829,6 +749,8 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
 }
+
+
 
 
 
